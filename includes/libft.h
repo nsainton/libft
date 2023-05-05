@@ -6,13 +6,16 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/05 18:06:42 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:36:18 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include "lft_int.h"
+# include "libft_int.h"
+
+//Functions from file : atoi_errors.c
+int			atoi_errors(t_cchar *s, t_cchar *base, int *err);
 
 //Functions from file : get_next_line.c
 int			parse_line(t_gline *line, char buf[BUFFER_SIZE + 1], \
