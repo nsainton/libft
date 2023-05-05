@@ -3,54 +3,122 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nsainton <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/07 11:56:11 by nsainton          #+#    #+#              #
-#    Updated: 2022/11/10 18:23:33 by nsainton         ###   ########.fr        #
+#    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
+#    Updated: 2023/05/05 16:02:25 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= libft.a
 
-SOURCES= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
-		ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
-		ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c \
-		ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-		ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c \
-		ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c \
-		ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
-		ft_tolower.c ft_toupper.c
+SRCS_DIR= sources
 
-BONUS_SRCS= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
-			ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c \
-			ft_lstnew.c ft_lstsize.c
+SRCS_NAMES= $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
 
-OBJS= $(SOURCES:.c=.o)
+SRCS= $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
 
-BONUS_OBJS= $(BONUS_SRCS:.c=.o)
+OBJS_DIR= objects
 
-CC= gcc
+OBJS_NAMES= $(SRCS_NAMES:.c=.o)
+
+OBJS= $(addprefix $(OBJS_DIR)/, $(OBJS_NAMES))
+
+INC_DIR= includes
+
+CC= cc
 
 CFLAGS= -Wall -Wextra -Werror
 
-all: $(NAME)
+AR= ar -rc
+
+LIBS := libs
+
+LIBS_DIR ?= $(shell pwd)/libs
+
+export LIBS_DIR
+export C_INCLUDE_PATH=$(INC_DIR)
+
+#Color codes for pretty printing
+BEGIN=\033[
+BLACK=30
+RED=31
+GREEN=32
+BROWN=33
+BLUE=34
+PURPLE=35
+CYAN=36
+NORMAL=0
+BOLD=1
+UNDERLINED=4
+BLINKING=5
+REVERSE=7
+END=\033[0m
+
+#Here is the definition of an ascii code
+#double backslash at the end of lines to ensure that it is not interpreted
+#as line continuation. One could also have added a space after the backslash
+#The export directive makes the header available to each submake
+#Font used is Sub-Zero
+define libft_header
+    __         __     ______     ______   ______  
+   /\ \       /\ \   /\  == \   /\  ___\ /\__  _\\
+   \ \ \____  \ \ \  \ \  __<   \ \  __\ \/_/\ \/ 
+    \ \_____\  \ \_\  \ \_____\  \ \_\      \ \_\\
+     \/_____/   \/_/   \/_____/   \/_/       \/_/ 
+endef
+export libft_header
+
+define compiled_header
+  ______  ______  __    __  ______  __  __      ______  _____    
+ /\  ___\/\  __ \/\ "-./  \/\  == \/\ \/\ \    /\  ___\/\  __-.  
+ \ \ \___\ \ \/\ \ \ \-./\ \ \  _-/\ \ \ \ \___\ \  __\\ \ \/\ \ 
+  \ \_____\ \_____\ \_\ \ \_\ \_\   \ \_\ \_____\ \_____\ \____- 
+   \/_____/\/_____/\/_/  \/_/\/_/    \/_/\/_____/\/_____/\/____/ 
+endef
+export compiled_header
+
+all:
+
+	$(MAKE) $(NAME)
 
 $(NAME): $(OBJS)
-	ar -rc $(NAME) $(OBJS)
+	$(AR) $(NAME) $(OBJS)
+	echo "$(BEGIN)$(GREEN)m"
+	echo "$$libft_header"
+	echo "$$compiled_header"
+	echo "$(END)"
 
-%.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(wildcard $(INC_DIR)/*.h) | $(OBJS_DIR)
+	$(CC) $(CFLAGS) $(OPT) $(GG) -c $< -o $@ -I $(INC_DIR)
 
-bonus: $(BONUS_OBJS) $(OBJS)
-	ar -rc $(NAME) $(OBJS) $(BONUS_OBJS)
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+debug:
+	make re GG=-g3 OPT=-O0
 
 clean:
-	rm -f $(BONUS_OBJS)
-	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
+	echo "$(BEGIN)$(RED)mObjects have been successfully removed$(END)"
 
-fclean: clean
+oclean:
 	rm -f $(NAME)
+	echo "$(BEGIN)$(RED);$(UNDERLINED)m$(NAME)\
+	$(BEGIN)$(NORMAL);$(CYAN)m has been successfully removed$(END)"
+
+fclean:
+	$(MAKE) clean
+	$(MAKE) oclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+git:
+	git add --all
+	git commit
+	git push origin dev
+
+maketest:
+	echo $(LIBS_DIR)
+
+.PHONY: all debug clean fclean re git
+.SILENT:
