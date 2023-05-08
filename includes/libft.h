@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/05 18:36:18 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:07:23 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int			ft_check_line(char buf[BUFFER_SIZE + 1], char *line, \
 ssize_t n_read);
 
 char		*get_next_line(int fd);
+
+//Functions from file : atoi_until.c
+int			atoi_until(t_cchar *s, t_cchar *base, int *err, size_t nb);
 
 //Functions from file : base.c
 int			ft_atoi_base(t_cchar *s, t_cchar *base, t_csizet base_len);
@@ -59,6 +62,11 @@ t_list		*getnext(t_clist *node);
 void		setcontent(t_list *node, void *content);
 
 void		*getcontent(t_clist *node);
+
+//Functions from file : strfuncs.c
+char		*ft_strcpy(char *dest, const char *src);
+
+char		*ft_strncpy(char *dest, const char *src, size_t n);
 
 //Functions from file : tstr_init.c
 void		tstr_init(t_str *str);
