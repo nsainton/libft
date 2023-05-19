@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lft_int.h                                          :+:      :+:    :+:   */
+/*   libft_int.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:01:17 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/05 18:05:33 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:58:30 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LFT_INT_H
-# define LFT_INT_H
+#ifndef LIBFT_INT_H
+# define LIBFT_INT_H
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -108,6 +108,10 @@ typedef t_sllong				t_sll;
 typedef unsigned char			t_uchar;
 
 typedef const t_uchar			t_cuchar;
+
+typedef signed char				t_schar;
+
+typedef const signed char		t_cschar;
 
 typedef signed int				t_sint;
 
