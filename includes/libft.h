@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/08 12:07:23 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:08:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,10 +160,12 @@ void		flush_fd(t_pbuffer *buf);
 
 void		flush_str(t_pbuffer *buf);
 
-//Functions from file : strlength.c
+//Functions from file : length.c
 size_t		ft_strlen(const char *s);
 
 size_t		ft_strnlen(const char *s, size_t maxlen);
+
+size_t		tablen(const void *tab, size_t elemsize);
 
 //Functions from file : putnbr_tab.c
 void		put_uns_tab(t_ull nb, char **tab, char *base, size_t len);
