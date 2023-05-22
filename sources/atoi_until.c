@@ -6,13 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 11:54:11 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/08 12:08:11 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:44:59 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	atoi_until(t_cchar *s, t_cchar *base, int *err, size_t nb)
+int	atoi_until(t_cchar *s, t_cchar *base, int *err, t_csizet nb)
 {
 	char	*cpy;
 	int		result;
