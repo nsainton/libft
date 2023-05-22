@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/22 16:45:18 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:08:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "libft_int.h"
 
 //Functions from file : atoi_errors.c
+int			atoi_errors_space(t_cchar *s, t_cchar *base, int *err);
+
 int			atoi_errors(t_cchar *s, t_cchar *base, int *err);
 
 //Functions from file : get_next_line.c
@@ -29,7 +31,8 @@ ssize_t n_read);
 char		*get_next_line(int fd);
 
 //Functions from file : atoi_until.c
-int			atoi_until(t_cchar *s, t_cchar *base, int *err, t_csizet nb);
+int			atoi_until(t_cchar *s, t_cchar *base, int *err, \
+t_csizet nb);
 
 //Functions from file : base.c
 int			ft_atoi_base(t_cchar *s, t_cchar *base, t_csizet base_len);
