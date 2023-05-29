@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:46:24 by nsainton          #+#    #+#             */
-/*   Updated: 2023/03/12 05:28:33 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:15:30 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ int	ft_putstr_fd(t_cchar *s, t_cint fd)
 	size_t	i;
 
 	i = ft_strlen(s);
+	return ((int)write(fd, s, i));
+}
+
+int	putnstr(t_cchar *s, t_csizet n, t_cint fd)
+{
+	size_t	i;
+
+	i = ft_strnlen(s, n);
 	return ((int)write(fd, s, i));
 }
 
