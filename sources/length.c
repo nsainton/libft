@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 11:17:59 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/19 09:07:41 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:14:19 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ size_t	ft_strnlen(const char *s, size_t maxlen)
 
 size_t	tablen(const void *tab, size_t elemsize)
 {
-	char		nullelem[100];
+	char		nullelem[300];
 	const char	*ptr;
 	size_t		index;
 
-	if (elemsize > 100)
+	if (elemsize > 300)
 		return (SIZE_MAX);
 	index = 0;
 	ptr = (const char *)tab;
