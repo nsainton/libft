@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:01:17 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/19 14:58:30 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:05:42 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ typedef struct s_str
 	size_t	len;
 	size_t	size;
 }				t_str;
+
+typedef struct s_cstr
+{
+	const char	*str;
+	size_t		index;
+}				t_cstr;
 
 typedef enum e_pflags
 {
