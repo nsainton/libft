@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:39:04 by nsainton          #+#    #+#             */
-/*   Updated: 2022/12/27 02:16:09 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:07:29 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,22 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t				i;
-	const unsigned char	*ptrs[2];
+	size_t		i;
+	t_cuchar	*p1;
+	t_cuchar	*p2;
 
-	ptrs[0] = (const unsigned char *)s1;
-	ptrs[1] = (const unsigned char *)s2;
+	p1 = (t_cuchar *)s1;
+	p2 = (t_cuchar *)s2;
 	i = 0;
 	while (i < n)
 	{
-		if (*(*ptrs + i) != *(*(ptrs + 1) + i))
+		if (*(p1 + i) != *(p2 + i))
 			break ;
 		i ++;
 	}
 	if (i == n)
 		return (0);
-	return ((int)(*(*ptrs + i) - *(*(ptrs + 1) + i)));
+	return ((int)(*(p1 + i) - *(p2 + i)));
 }
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
