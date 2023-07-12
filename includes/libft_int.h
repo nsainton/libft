@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:01:17 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/12 23:42:52 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:53:20 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define DEC "0123456789"
 # define HEX "0123456789abcdef"
 # define HEX_MAJ "0123456789ABCDEF"
+# define OCT "01234567"
+# define BIN "01"
 
 typedef struct s_list
 {
