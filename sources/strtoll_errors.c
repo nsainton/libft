@@ -6,7 +6,7 @@
 /*   By: nsainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:24:21 by nsainton          #+#    #+#             */
-/*   Updated: 2023/06/23 00:33:34 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:53:18 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_ll	fill_num(t_cchar **s, t_cchar *base, t_ull *abs)
 		*abs = *abs * len + index - base;
 		if (*abs > max)
 			return (1);
-		(*s) ++;
+		(*s)++;
 	}
 	return (0);
 }

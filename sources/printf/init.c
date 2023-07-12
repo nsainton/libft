@@ -6,7 +6,7 @@
 /*   By: nsainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 23:02:41 by nsainton          #+#    #+#             */
-/*   Updated: 2023/02/10 03:56:36 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:45:21 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void	init_func(t_pfunc func[80])
 	func[ft_atoi_base("x", SPECIFIERS, len)] = &put_hex_min;
 	func[ft_atoi_base("X", SPECIFIERS, len)] = &put_hex_maj;
 	func[ft_atoi_base("%", SPECIFIERS, len)] = &put_percent;
+	func[ft_atoi_base("b", SPECIFIERS, len)] = &put_bin;
 }
 
 t_pfunc	*get_funcs(void)

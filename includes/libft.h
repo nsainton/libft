@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/03/31 16:08:14 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:50:51 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int			tstr_cpy(t_str *dst, const t_str *src);
 void		put_char(t_pbuffer *buf, va_list *ap, char flags[128]);
 
 void		put_string(t_pbuffer *buf, va_list *ap, char flags[128]);
+
+//Functions from file : binary.c
+void		put_bin(t_pbuffer *buf, va_list *ap, char flags[128]);
 
 //Functions from file : ft_strdup.c
 char		*ft_strdup(const char *s);

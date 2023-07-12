@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 23:39:23 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/12 23:42:22 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:48:06 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # endif
 # define PBUFFER_SIZE 1000
 # define FLAGS "# +-0"
-# define SPECIFIERS "cspdiuxX%"
-# define P_CONV "cspdiuxX"
-# define ADMITTED "c;s;p;d;i;u;x;X;%;"
+# define SPECIFIERS "bcspdiuxX%"
+# define P_CONV "bcspdiuxX"
+# define ADMITTED "b;c;s;p;d;i;u;x;X;%;"
 # define SEPARATOR ';'
 
 typedef struct s_pbuffer
