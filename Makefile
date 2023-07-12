@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/06/20 17:29:37 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/12 23:47:06 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ NAME= libft.a
 
 SRCS_DIR= sources
 
-SRCS_NAMES= $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
+SRCS_SUBDIRS:= $(shell find $(SRCS_DIR) -type d)
+
+#SRCS_NAMES= $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
+SRCS_NAMES:= $(subst $(SRCS_DIR)/,, $(foreach dir, $(SRCS_SUBDIRS), $(wildcard $(dir)/*.c)))
+
 
 SRCS= $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
 
@@ -35,6 +39,11 @@ AR= ar -rc
 LIBS := libs
 
 LIBS_DIR ?= $(shell pwd)/libs
+
+DEPS_DIR:= dependencies
+
+DEPS:= $(patsubst %.c, $(DEPS_DIR)/%.d, $(SRCS_NAMES) $(PROG))
+
 
 export LIBS_DIR
 export C_INCLUDE_PATH=$(INC_DIR)
@@ -89,11 +98,19 @@ $(NAME): $(OBJS)
 	echo "$$compiled_header"
 	echo "$(END)"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(wildcard $(INC_DIR)/*.h) | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(OPT) $(GG) -c $< -o $@ -I $(INC_DIR)
+#$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(wildcard $(INC_DIR)/*.h) | $(OBJS_DIR)
+#	$(CC) $(CFLAGS) $(OPT) $(GG) -c $< -o $@ -I $(INC_DIR)
 
-$(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INC_DIR)
+	[ -d $(@D) ] || mkdir -p $(@D)
+	arg="$$(dirname $(DEPS_DIR)/$*)"; \
+	[ -d $$arg ] || mkdir -p $$arg
+	$(CC) $(CFLAGS) $(GG) $(OPT) -MD -MF $(DEPS_DIR)/$*.d -c $< -o $@
+
+
+#$(OBJS_DIR):
+#	mkdir -p $(OBJS_DIR)
+
 debug:
 	make re GG=-g3 OPT=-O0 CC=gcc
 
@@ -122,3 +139,5 @@ maketest:
 
 .PHONY: all debug clean fclean re git
 .SILENT:
+
+-include $(DEPS)
