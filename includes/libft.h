@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/13 00:50:51 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 01:16:52 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,11 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strcpy(char *dest, const char *src);
 
 char		*ft_strncpy(char *dest, const char *src, size_t n);
+
+char		*strcpy_until(char *dest, t_cchar *src, t_cint limiter);
+
+char		*strncpy_until(char *dest, t_cchar *src, t_cint limiter, \
+t_csizet n);
 
 //Functions from file : allocation.c
 void		*ft_calloc(size_t nmemb, size_t size);
