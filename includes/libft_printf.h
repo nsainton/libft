@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 23:39:23 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/13 00:48:06 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 03:15:17 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define P_CONV "bcspdiuxX"
 # define ADMITTED "b;c;s;p;d;i;u;x;X;%;"
 # define SEPARATOR ';'
+# define COLOR_LEN 10
+# define COLORS_NB 20
 
 typedef struct s_pbuffer
 {
@@ -42,6 +44,12 @@ typedef struct s_print
 	char	align;
 }				t_print;
 
+typedef struct s_color
+{
+	char	*color;
+	char	*code;
+}				t_color;
+
 typedef enum e_pflags
 {
 	SHARP = 1 << 0,
@@ -52,6 +60,11 @@ typedef enum e_pflags
 	DOT = 1 << 5
 }				t_pflags;
 
+typedef enum e_colorstate
+{
+	COLOR_EXISTS,
+	NO_COLOR
+}			t_colorstate;
 /*
 Think about using the enum in ft_printf
 instead of the array of chars

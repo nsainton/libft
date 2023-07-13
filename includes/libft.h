@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/13 01:16:52 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/13 03:27:19 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void		put_string(t_pbuffer *buf, va_list *ap, char flags[128]);
 
 //Functions from file : binary.c
 void		put_bin(t_pbuffer *buf, va_list *ap, char flags[128]);
+
+//Functions from file : colors.c
+int			print_color_buf(t_pbuffer *buf, char *color);
 
 //Functions from file : ft_strdup.c
 char		*ft_strdup(const char *s);
