@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/13 03:27:19 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/14 01:27:23 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ size_t		tstrncat(t_str *str, const char *s, size_t bytes);
 int			ft_snprintf(char *str, size_t size, const char *format, \
 ...);
 
-int			ft_sprintf(t_str *str, const char *format, ...);
+int			ft_sprintf(char *str, const char *format, ...);
 
 int			ft_vsnprintf(t_str *str, const char *format, va_list ap);
 
