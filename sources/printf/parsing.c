@@ -6,7 +6,7 @@
 /*   By: nsainton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 21:33:37 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/13 03:48:45 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/14 01:37:42 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	loop(t_pbuffer *buf, const char **conv)
 		}
 		if (color_printed == COLOR_EXISTS)
 		{
-			*conv += (end_copy - color) + 2;
+			*conv += (end_copy - color) + 1;
+			*conv += (**conv == '}');
 			color_printed = NO_COLOR;
 			continue ;
 		}
