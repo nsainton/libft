@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 21:08:40 by nsainton          #+#    #+#             */
-/*   Updated: 2023/01/14 03:57:34 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:12:21 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,11 @@ t_str	*tstr_realloc(t_str *old_string, size_t new_size)
 
 	new_string = ft_calloc(1, sizeof * new_string);
 	if (new_string == NULL)
-	{
-		free(old_string->str);
-		free(old_string);
 		return (NULL);
-	}
 	new_string->str = ft_calloc(1, new_size);
 	if (new_string->str == NULL)
 	{
 		free(new_string);
-		free(old_string->str);
-		free(old_string);
 		return (NULL);
 	}
 	new_string->size = new_size;
