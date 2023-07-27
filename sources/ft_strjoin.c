@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:35:45 by nsainton          #+#    #+#             */
-/*   Updated: 2022/10/13 13:01:47 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:14:15 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (! (s1 || s2))
 		return (NULL);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	ns = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(*ns));
+	len_s1 = 0;
+	len_s2 = 0;
+	if (s1)
+		len_s1 = ft_strlen(s1);
+	if (s2)
+		len_s2 = ft_strlen(s2);
+	ns = malloc((len_s1 + len_s2 + 1) * sizeof * ns);
 	if (ns == NULL)
 		return (NULL);
 	*ns = 0;
