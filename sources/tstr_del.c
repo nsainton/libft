@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 05:25:38 by nsainton          #+#    #+#             */
-/*   Updated: 2022/12/27 05:27:06 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:23:50 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	tstr_del(t_str *str)
 {
 	if (str->size > 0)
 		free(str->str);
-	tstr_init(str);
+	ft_bzero(str, sizeof * str);
 }

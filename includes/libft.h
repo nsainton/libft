@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/03/31 16:08:14 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:20:49 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void		ft_lstdel_front(t_list **lst, void (*del) (void *));
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 
 //Functions from file : tstr_init.c
-void		tstr_init(t_str *str);
+void		tstr_reinit(t_str *str);
+
+int			tstr_init(t_str *str, size_t size);
 
 int			tstr_initstr(t_str *tstr, char *str, size_t buffsize);
 
