@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:34:33 by nsainton          #+#    #+#             */
-/*   Updated: 2022/12/28 21:55:44 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 07:55:33 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,19 @@ int	tstr_addchar(t_str *str, char c)
 size_t	tstrncat(t_str *str, const char *s, size_t bytes)
 {
 	size_t	added;
+	size_t	i;
 
 	if (str->len >= str->size - 1)
 		return (0);
 	if (bytes + str->len >= str->size - 1)
 		bytes = str->size - str->len - 1;
 	added = bytes;
-	while (bytes > 0 && *s)
+	i = 0;
+	while (i < bytes && *(s + i))
 	{
-		*(str->str + str->len) = *s;
-		s ++;
+		*(str->str + str->len) = *(s + i);
 		str->len += 1;
-		bytes --;
+		i ++;
 	}
 	*(str->str + str->len) = 0;
 	return (added);
