@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/06/20 17:29:37 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/28 12:31:48 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,17 @@ NAME= libft.a
 
 SRCS_DIR= sources
 
-SRCS_NAMES= $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
+SRCS_NAMES= address.c allocation.c ascii1.c ascii2.c atoi_errors.c atoi_until.c \
+			base.c colors_print.c count_equal.c decimal.c flush.c ft_atoi.c \
+			ft_bzero.c ft_itoa.c ft_printf.c ft_split.c ft_sprintf.c \
+			ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
+			ft_strlcpy.c ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strnstr.c \
+			ft_strrchr.c ft_strtrim.c ft_substr.c get_next_line.c helpers.c \
+			hexadecimal.c init.c length.c lst_access.c lst_addelem.c \
+			lst_delelem.c lst_functions.c memfuncs.c minimum.c parsing.c \
+			pbuffer.c percent.c print_fd.c printing.c putnbr_tab.c strfuncs.c \
+			strings.c strtoll_errors.c tstr_add.c tstr_alloc.c tstr_del.c \
+			tstr_init.c tstr_print.c
 
 SRCS= $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
 
@@ -25,6 +35,8 @@ OBJS_NAMES= $(SRCS_NAMES:.c=.o)
 OBJS= $(addprefix $(OBJS_DIR)/, $(OBJS_NAMES))
 
 INC_DIR= includes
+
+INC_PATHS= includes/ansicolorcodes.h includes/libft.h includes/libft_int.h
 
 CC= cc
 
@@ -89,7 +101,7 @@ $(NAME): $(OBJS)
 	echo "$$compiled_header"
 	echo "$(END)"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(wildcard $(INC_DIR)/*.h) | $(OBJS_DIR)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INC_PATHS) | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(OPT) $(GG) -c $< -o $@ -I $(INC_DIR)
 
 $(OBJS_DIR):
@@ -119,6 +131,10 @@ git:
 
 maketest:
 	echo $(LIBS_DIR)
+
+getsrcs:
+	echo $(SRCS_NAMES)
+	echo $(wildcard $(INC_DIR)/*.h)
 
 .PHONY: all debug clean fclean re git
 .SILENT:
