@@ -6,13 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:34:33 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 07:55:33 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 19:31:40 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	tstr_addchar(t_str *str, char c)
+int	tstr_addchar(t_str *str, int c)
 {
 	if (str->len >= str->size - 1)
 		return (1);
@@ -20,6 +20,19 @@ int	tstr_addchar(t_str *str, char c)
 	str->len += 1;
 	*(str->str + str->len) = 0;
 	return (0);
+}
+
+int	tstr_addchar_realloc(t_str **str, int c)
+{
+	t_str	*tmp;
+
+	if (! tstr_addchar(*str, c))
+		return (EXIT_SUCCESS);
+	tmp = tstr_realloc(*str, 2 * (*str)->size);
+	if (! tmp)
+		return (EXIT_FAILURE);
+	*str = tmp;
+	return (tstr_addchar(*str, c));
 }
 
 size_t	tstrncat(t_str *str, const char *s, size_t bytes)

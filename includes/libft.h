@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 09:20:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 19:30:25 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,9 @@ int			ft_strcmp(t_cchar *s1, t_cchar *s2);
 int			cmp_until(t_cchar *s1, t_cchar *s2, t_cchar c);
 
 //Functions from file : tstr_add.c
-int			tstr_addchar(t_str *str, char c);
+int			tstr_addchar(t_str *str, int c);
+
+int			tstr_addchar_realloc(t_str **str, int c);
 
 size_t		tstrncat(t_str *str, const char *s, size_t bytes);
 
