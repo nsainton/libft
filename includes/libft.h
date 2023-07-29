@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 19:30:25 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/29 10:13:35 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void		flush_fd(t_pbuffer *buf);
 void		flush_str(t_pbuffer *buf);
 
 //Functions from file : ft_strmapi.c
-char		*ft_strmapi(char const *s, char (*f) (unsigned int, char));
+char		*ft_strmapi(char const *s, int (*f) (unsigned int, int));
 
 //Functions from file : ft_substr.c
 char		*ft_substr(char const *s, unsigned int start, size_t len);
