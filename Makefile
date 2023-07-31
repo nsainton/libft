@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/07/28 12:31:48 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/31 11:54:36 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS_NAMES= address.c allocation.c ascii1.c ascii2.c atoi_errors.c atoi_until.c 
 			base.c colors_print.c count_equal.c decimal.c flush.c ft_atoi.c \
 			ft_bzero.c ft_itoa.c ft_printf.c ft_split.c ft_sprintf.c \
 			ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
-			ft_strlcpy.c ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strnstr.c \
+			ft_strlcpy.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
 			ft_strrchr.c ft_strtrim.c ft_substr.c get_next_line.c helpers.c \
 			hexadecimal.c init.c length.c lst_access.c lst_addelem.c \
 			lst_delelem.c lst_functions.c memfuncs.c minimum.c parsing.c \
