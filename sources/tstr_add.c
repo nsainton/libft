@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 04:34:33 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 19:31:40 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 08:10:00 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,22 @@ size_t	tstrncat(t_str *str, const char *s, size_t bytes)
 	}
 	*(str->str + str->len) = 0;
 	return (added);
+}
+
+int	tstrcat_realloc(t_str **str, const char *s)
+{
+	size_t	len;
+	t_str	*tmp;
+
+	len = ft_strlen(s);
+	tmp = *str;
+	if (tmp->len + len + 1 > tmp->size)
+	{
+		tmp = tstr_realloc(*str, tmp->len + len + 1);
+		if (! tmp)
+			return (1);
+		*str = tmp;
+	}
+	tmp->len += ft_strcat(tmp->str + tmp->len, s);
+	return (0);
 }
