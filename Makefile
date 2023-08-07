@@ -6,13 +6,13 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/07/31 11:54:36 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/07 16:36:23 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= libft.a
+NAME = libft.a
 
-SRCS_DIR= sources
+SRCS_DIR = sources
 
 SRCS_NAMES= address.c allocation.c ascii1.c ascii2.c atoi_errors.c atoi_until.c \
 			base.c colors_print.c count_equal.c decimal.c flush.c ft_atoi.c \
@@ -26,23 +26,39 @@ SRCS_NAMES= address.c allocation.c ascii1.c ascii2.c atoi_errors.c atoi_until.c 
 			strings.c strtoll_errors.c tstr_add.c tstr_alloc.c tstr_del.c \
 			tstr_init.c tstr_print.c
 
-SRCS= $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
+SHELL = /bin/sh #To avoid troubles on system where SHELL variable is inherited
+				#From the environment
 
-OBJS_DIR= objects
+.SUFFIXES: #To clear the suffix list
+.SUFFIXES: .c .o .a #To specify only the suffixes we need in this particular Makefile
 
-OBJS_NAMES= $(SRCS_NAMES:.c=.o)
+SRCS_NAMES = $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
 
-OBJS= $(addprefix $(OBJS_DIR)/, $(OBJS_NAMES))
+SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
 
-INC_DIR= includes
+OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
-INC_PATHS= includes/ansicolorcodes.h includes/libft.h includes/libft_int.h
+STABLE_OBJS_DIR = objects
 
-CC= cc
+DEBUG_OBJS_DIR = objects_debug
 
-CFLAGS= -Wall -Wextra -Werror
+STABLE_OBJS = $(addprefix $(STABLE_OBJS_DIR)/, $(OBJS_NAMES))
 
-AR= ar -rc
+DEBUG_OBJS = $(addprefix $(DEBUG_OBJS_DIR)/, $(OBJS_NAMES))
+
+OBJS := $(STABLE_OBJS)
+
+INC_DIR = includes
+
+INC_NAMES= ansicolorcodes.h libft.h libft_int.h
+
+INC_PATHS := $(addprefix $(INC_DIR)/$(INC_NAMES))
+
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror
+
+AR = ar -rc
 
 LIBS := libs
 
@@ -90,51 +106,62 @@ define compiled_header
 endef
 export compiled_header
 
-all:
+.DEFAULT_GOAL := stable
 
-	$(MAKE) $(NAME)
+all : stable
 
-$(NAME): $(OBJS)
+$(NAME) :
 	$(AR) $(NAME) $(OBJS)
 	echo "$(BEGIN)$(GREEN)m"
 	echo "$$libft_header"
 	echo "$$compiled_header"
 	echo "$(END)"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INC_PATHS) | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(OPT) $(GG) -c $< -o $@ -I $(INC_DIR)
+$(STABLE_OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INC_PATHS) | $(STABLE_OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
-$(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
-debug:
-	make re GG=-g3 OPT=-O0 CC=gcc
+$(DEBUG_OBJS_DIR)/%.o : $(SRCS_DIR)/%.c $(INC_PATHS) | $(DEBUG_OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
-clean:
-	rm -rf $(OBJS_DIR)
+$(STABLE_OBJS_DIR) :
+	mkdir -p $(STABLE_OBJS_DIR)
+
+$(DEBUG_OBJS_DIR) :
+	mkdir -p $(DEBUG_OBJS_DIR)
+
+stable : OBJS = $(STABLE_OBJS)
+stable : $(STABLE_OBJS) $(NAME)
+
+debug : OBJS := $(DEBUG_OBJS)
+debug : CFLAGS += -g3 -O0
+debug : CC := gcc
+debug : $(DEBUG_OBJS) $(NAME)
+
+clean :
+	rm -rf $(STABLE_OBJS_DIR)
+	rm -rf $(DEBUG_OBJS_DIR)
 	echo "$(BEGIN)$(RED)mObjects have been successfully removed$(END)"
 
-oclean:
+oclean :
 	rm -f $(NAME)
 	echo "$(BEGIN)$(RED);$(UNDERLINED)m$(NAME)\
 	$(BEGIN)$(NORMAL);$(CYAN)m has been successfully removed$(END)"
 
-fclean:
-	$(MAKE) clean
-	$(MAKE) oclean
+fclean : clean oclean
 
-re: fclean all
+re : fclean all
 
-git:
+git :
 	git add --all
 	git commit
 	git push origin dev
 
-maketest:
+maketest :
 	echo $(LIBS_DIR)
 
 getsrcs:
 	echo $(SRCS_NAMES)
 	echo $(wildcard $(INC_DIR)/*.h)
 
-.PHONY: all debug clean fclean re git
-.SILENT:
+.PHONY : all stable debug clean fclean re git
+.SILENT :
