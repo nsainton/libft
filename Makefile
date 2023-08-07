@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/07 16:36:23 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/07 16:37:10 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ INC_DIR = includes
 
 INC_NAMES= ansicolorcodes.h libft.h libft_int.h
 
-INC_PATHS := $(addprefix $(INC_DIR)/$(INC_NAMES))
+INC_PATHS := $(addprefix $(INC_DIR)/, $(INC_NAMES))
 
 CC = cc
 
