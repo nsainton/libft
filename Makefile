@@ -6,31 +6,37 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/06/20 17:29:37 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/07 15:16:35 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= libft.a
+NAME = libft.a
 
-SRCS_DIR= sources
+SRCS_DIR = sources
 
-SRCS_NAMES= $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
+SRCS_NAMES = $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
 
-SRCS= $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
+SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_NAMES))
 
-OBJS_DIR= objects
+OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
-OBJS_NAMES= $(SRCS_NAMES:.c=.o)
+STABLE_OBJS_DIR = objects
 
-OBJS= $(addprefix $(OBJS_DIR)/, $(OBJS_NAMES))
+DEBUG_OBJS_DIR = objects_debug
 
-INC_DIR= includes
+STABLE_OBJS = $(addprefix $(STABLE_OBJS_DIR)/, $(OBJS_NAMES))
 
-CC= cc
+DEBUG_OBJS = $(addprefix $(DEBUG_OBJS_DIR)/, $(OBJS_NAMES))
 
-CFLAGS= -Wall -Wextra -Werror
+INC_DIR = includes
 
-AR= ar -rc
+INCS_PATHS = $(wildcard $(INC_DIR)/*.h)
+
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror
+
+AR = ar -rc
 
 LIBS := libs
 
@@ -78,47 +84,59 @@ define compiled_header
 endef
 export compiled_header
 
-all:
+all :
+	$(MAKE) stable
 
-	$(MAKE) $(NAME)
-
-$(NAME): $(OBJS)
+$(NAME) : $(OBJS)
+	#echo $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 	echo "$(BEGIN)$(GREEN)m"
 	echo "$$libft_header"
 	echo "$$compiled_header"
 	echo "$(END)"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(wildcard $(INC_DIR)/*.h) | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(OPT) $(GG) -c $< -o $@ -I $(INC_DIR)
+$(STABLE_OBJS_DIR)/%.o : $(SRCS_DIR)/%.c | $(STABLE_OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
-$(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
-debug:
-	make re GG=-g3 OPT=-O0 CC=gcc
+$(DEBUG_OBJS_DIR)/%.o : $(SRCS_DIR)/%.c | $(DEBUG_OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
-clean:
-	rm -rf $(OBJS_DIR)
+$(STABLE_OBJS_DIR) :
+	mkdir -p $(STABLE_OBJS_DIR)
+
+$(DEBUG_OBJS_DIR) :
+	mkdir -p $(DEBUG_OBJS_DIR)
+
+stable : OBJS = $(STABLE_OBJS)
+stable : $(NAME)
+
+debug : OBJS := $(DEBUG_OBJS)
+debug : CFLAGS += -g3 -O0
+debug : $(NAME)
+
+clean :
+	rm -rf $(STABLE_OBJS_DIR)
+	rm -rf $(DEBUG_OBJS_DIR)
 	echo "$(BEGIN)$(RED)mObjects have been successfully removed$(END)"
 
-oclean:
+oclean :
 	rm -f $(NAME)
 	echo "$(BEGIN)$(RED);$(UNDERLINED)m$(NAME)\
 	$(BEGIN)$(NORMAL);$(CYAN)m has been successfully removed$(END)"
 
-fclean:
+fclean :
 	$(MAKE) clean
 	$(MAKE) oclean
 
-re: fclean all
+re : fclean all
 
-git:
+git :
 	git add --all
 	git commit
 	git push origin dev
 
-maketest:
+maketest :
 	echo $(LIBS_DIR)
 
-.PHONY: all debug clean fclean re git
-.SILENT:
+.PHONY : all stable debug clean fclean re git
+#.SILENT :
