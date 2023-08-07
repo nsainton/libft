@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/07 15:59:56 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/07 16:09:50 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,6 @@ export compiled_header
 all : stable
 
 $(NAME) : $(OBJS)
-	@echo $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 	echo "$(BEGIN)$(GREEN)m"
 	echo "$$libft_header"
@@ -121,6 +120,7 @@ stable : $(STABLE_OBJS) $(NAME)
 
 debug : OBJS := $(DEBUG_OBJS)
 debug : CFLAGS += -g3 -O0
+debug : CC := gcc
 debug : $(DEBUG_OBJS) $(NAME)
 
 clean :
@@ -133,9 +133,7 @@ oclean :
 	echo "$(BEGIN)$(RED);$(UNDERLINED)m$(NAME)\
 	$(BEGIN)$(NORMAL);$(CYAN)m has been successfully removed$(END)"
 
-fclean :
-	$(MAKE) clean
-	$(MAKE) oclean
+fclean : clean oclean
 
 re : fclean all
 
@@ -148,4 +146,4 @@ maketest :
 	echo $(LIBS_DIR)
 
 .PHONY : all stable debug clean fclean re git
-#.SILENT :
+.SILENT :
