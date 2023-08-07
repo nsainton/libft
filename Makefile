@@ -6,13 +6,19 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/07 15:16:35 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/07 15:59:56 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 SRCS_DIR = sources
+
+SHELL = /bin/sh #To avoid troubles on system where SHELL variable is inherited
+				#From the environment
+
+.SUFFIXES: #To clear the suffix list
+.SUFFIXES: .c .o .a #To specify only the suffixes we need in this particular Makefile
 
 SRCS_NAMES = $(subst $(SRCS_DIR)/,, $(wildcard $(SRCS_DIR)/*))
 
@@ -27,6 +33,8 @@ DEBUG_OBJS_DIR = objects_debug
 STABLE_OBJS = $(addprefix $(STABLE_OBJS_DIR)/, $(OBJS_NAMES))
 
 DEBUG_OBJS = $(addprefix $(DEBUG_OBJS_DIR)/, $(OBJS_NAMES))
+
+OBJS := $(STABLE_OBJS)
 
 INC_DIR = includes
 
@@ -84,11 +92,12 @@ define compiled_header
 endef
 export compiled_header
 
-all :
-	$(MAKE) stable
+.DEFAULT_GOAL := stable
+
+all : stable
 
 $(NAME) : $(OBJS)
-	#echo $(OBJS)
+	@echo $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 	echo "$(BEGIN)$(GREEN)m"
 	echo "$$libft_header"
@@ -108,11 +117,11 @@ $(DEBUG_OBJS_DIR) :
 	mkdir -p $(DEBUG_OBJS_DIR)
 
 stable : OBJS = $(STABLE_OBJS)
-stable : $(NAME)
+stable : $(STABLE_OBJS) $(NAME)
 
 debug : OBJS := $(DEBUG_OBJS)
 debug : CFLAGS += -g3 -O0
-debug : $(NAME)
+debug : $(DEBUG_OBJS) $(NAME)
 
 clean :
 	rm -rf $(STABLE_OBJS_DIR)
