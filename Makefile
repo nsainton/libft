@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 06:01:21 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/07 16:37:10 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/07 20:38:54 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ export compiled_header
 
 all : stable
 
-$(NAME) :
+$(NAME) : $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 	echo "$(BEGIN)$(GREEN)m"
 	echo "$$libft_header"
