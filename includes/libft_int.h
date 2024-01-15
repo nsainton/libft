@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:01:17 by nsainton          #+#    #+#             */
-/*   Updated: 2023/06/01 17:05:42 by nsainton         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:51:37 by nsainto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define SPECIFIERS "cspdiuxX%"
 # define P_CONV "cspdiuxX"
 # define ADMITTED "c;s;p;d;i;u;x;X;%;"
-# define SEPARATOR ';'
+# define SEPARATOR ";"
 
 typedef struct s_list
 {
